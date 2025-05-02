@@ -46,7 +46,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % candidateImages.length);
-    }, 2500);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
