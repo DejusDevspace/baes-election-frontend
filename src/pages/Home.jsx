@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useVoting } from "../context/VotingContext";
 import LivePoll from "../components/common/LivePoll";
+import { useSwipeable } from "react-swipeable";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
 const candidateImages = [
   "olayemi-godwin.jpeg",
@@ -42,14 +43,34 @@ const Home = () => {
   const { student } = useContext(AuthContext);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Slideshow effect
+  // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % candidateImages.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, []);
+
+  // Swipe handlers
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () =>
+      setCurrentImageIndex((prev) => (prev + 1) % candidateImages.length),
+    onSwipedRight: () =>
+      setCurrentImageIndex((prev) =>
+        prev === 0 ? candidateImages.length - 1 : prev - 1
+      ),
+    trackMouse: true,
+  });
+
+  const goNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % candidateImages.length);
+  };
+
+  const goPrev = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? candidateImages.length - 1 : prev - 1
+    );
+  };
 
   const LandingContent = () => {
     return (
@@ -70,12 +91,31 @@ const Home = () => {
           </div>
 
           {/* Image carousel */}
-          <div className="w-full h-[550px] lg:w-[550px] lg:h-[700px] flex justify-center items-center rounded-lg overflow-hidden">
+          <div
+            className="relative w-full h-[550px] lg:w-[550px] lg:h-[700px] flex justify-center items-center rounded-lg overflow-hidden"
+            {...swipeHandlers}
+          >
             <img
               src={`/candidates/${candidateImages[currentImageIndex]}`}
               alt="Candidate"
               className="w-full h-full object-cover transition duration-1000 ease-in-out"
             />
+
+            {/* Left Button */}
+            <button
+              onClick={goPrev}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
+            >
+              <HiChevronLeft size={28} />
+            </button>
+
+            {/* Right Button */}
+            <button
+              onClick={goNext}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
+            >
+              <HiChevronRight size={28} />
+            </button>
           </div>
         </div>
       </div>
