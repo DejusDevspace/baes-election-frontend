@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className="w-full p-4 z-20">
-      <div className="container mx-auto flex justify-between items-center px-6 xl:px-4">
+      <div className="container mx-auto flex justify-between items-center px-4">
         <a href="/">
           <img src="/assets/logo.png" alt="logo" className="max-h-[80px]" />
         </a>
