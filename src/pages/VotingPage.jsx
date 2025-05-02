@@ -198,7 +198,9 @@ const VotingPage = () => {
                         />
                       </motion.div>
                     ) : (
-                      <p>No candidates for this position</p>
+                      <p className="w-full self-center">
+                        No candidates for this position
+                      </p>
                     ))}
                 </AnimatePresence>
               </div>
