@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initAuth = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const token = localStorage.getItem("token");
         if (token) {
@@ -18,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         }
       } catch (err) {
         console.error("Authentication error:", err);
+        setError(err.message || "Failed to authenticate");
         localStorage.removeItem("token");
       } finally {
         setTimeout(() => {
