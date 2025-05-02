@@ -180,25 +180,26 @@ const VotingPage = () => {
                   </div>
                 </motion.div>
                 <AnimatePresence>
-                  {isToggled === toggleId && senateHeadCandidates.length > 0 ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <CandidateForm
-                        candidates={senateHeadCandidates.filter(
-                          (c) => c.position === pos.position
-                        )}
-                        position={pos.position}
-                        selectedCandidateId={votes[pos.position]}
-                        onVote={handleVote}
-                      />
-                    </motion.div>
-                  ) : (
-                    <p>No candidates for this position</p>
-                  )}
+                  {isToggled === toggleId &&
+                    (senateHeadCandidates.length > 0 ? (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <CandidateForm
+                          candidates={senateHeadCandidates.filter(
+                            (c) => c.position === pos.position
+                          )}
+                          position={pos.position}
+                          selectedCandidateId={votes[pos.position]}
+                          onVote={handleVote}
+                        />
+                      </motion.div>
+                    ) : (
+                      <p>No candidates for this position</p>
+                    ))}
                 </AnimatePresence>
               </div>
             );
