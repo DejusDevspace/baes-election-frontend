@@ -180,7 +180,7 @@ const VotingPage = () => {
                   </div>
                 </motion.div>
                 <AnimatePresence>
-                  {isToggled === toggleId && (
+                  {isToggled === toggleId && senateHeadCandidates.length > 0 ? (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
@@ -196,6 +196,8 @@ const VotingPage = () => {
                         onVote={handleVote}
                       />
                     </motion.div>
+                  ) : (
+                    <p>No candidates for this position</p>
                   )}
                 </AnimatePresence>
               </div>
