@@ -12,7 +12,7 @@ const VotingClosed = () => {
       </p>
       <Link
         to="/"
-        className="text-sm px-6 py-3 bg-white text-primary font-semibold  bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg hover:scale-105 transition"
+        className="text-sm px-4 xl:px-6 py-3 bg-white text-primary font-semibold  bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg hover:scale-105 transition"
       >
         Return to Home
       </Link>
