@@ -7,6 +7,7 @@ import Vote from "./pages/VotingPage";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import NotFound from "./pages/404";
 import ThankYou from "./pages/ThankYou";
+import VotingClosed from "./pages/VotingClosed";
 
 const AppRoutes = () => {
   const { student } = useContext(AuthContext);
@@ -27,6 +28,7 @@ const AppRoutes = () => {
         }
       />
       <Route path="/response-recorded" element={<ThankYou />} />
+      <Route path="/voting-closed" element={<VotingClosed />} />
       <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
