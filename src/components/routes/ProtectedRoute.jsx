@@ -11,7 +11,7 @@ import { useVoting } from "../../context/VotingContext";
 const ProtectedRoute = ({ children }) => {
   const { student, loading } = useContext(AuthContext);
   const { hasVoted } = useVoting();
-  const votingDeadline = new Date("2025-05-03T22:00:00");
+  const votingDeadline = new Date("2025-05-04T09:00:00");
   const now = new Date();
 
   if (loading) return <p>Loading...</p>;
